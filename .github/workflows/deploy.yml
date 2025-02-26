@@ -12,6 +12,9 @@ jobs:
       - name: Checkout código
         uses: actions/checkout@v4
       
+      - name: Configurar Buildx
+        uses: docker/setup-buildx-action@v2
+        
       - name: Login no OCI Registry
         run: echo "${{ secrets.OCI_PASSWORD }}" | docker login ocir.sa-saopaulo-1.oci.oraclecloud.com/grfpdjlscx8c -u "${{ secrets.OCI_USERNAME }}" --password-stdin
       

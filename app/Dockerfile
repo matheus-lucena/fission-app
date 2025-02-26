@@ -1,4 +1,4 @@
-FROM node:12-alpine
+FROM --platform=linux/arm64 node:22-alpine
 
 # Define o diretório de trabalho
 WORKDIR /app
