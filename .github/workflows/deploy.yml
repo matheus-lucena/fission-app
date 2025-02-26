@@ -1,0 +1,22 @@
+name: Publish to OCI Registry
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  push-to-oci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+      
+      - name: Login no OCI Registry
+        run: echo "${{ secrets.OCI_PASSWORD }}" | docker login ghcr.io -u "${{ secrets.OCI_USERNAME }}" --password-stdin
+      
+      - name: Construir e publicar imagem
+        run: |
+          IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/fission-function:latest
+          docker build --platform linux/arm64 -t $IMAGE_NAME ./app
+          docker push $IMAGE_NAME

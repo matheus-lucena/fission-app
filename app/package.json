@@ -1,0 +1,9 @@
+{
+    "name": "fission-app",
+    "version": "1.0.0",
+    "main": "handler.js",
+    "dependencies": {
+      "http": "^0.0.1-security"
+    }
+  }
+  
